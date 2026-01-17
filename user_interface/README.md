@@ -78,13 +78,3 @@ Environment variables for CSV data sources:
 - REACT_APP_BASE_CSV_URL
 - REACT_APP_BSC_CSV_URL
 
-The application automatically falls back to local CSV files if remote URLs fail or encounter CORS issues.
-
-## Setup
-
-```bash
-npm install
-npm start
-```
-
-The application runs on http://localhost:3000 by default.
