@@ -1,0 +1,7 @@
+https://raw.githubusercontent.com/{owner}/{repo}/refs/heads/main/{filename}?token={your_token}
+
+REACT_APP_SOLANA_CSV_URL
+REACT_APP_ETHEREUM_CSV_URL
+REACT_APP_BASE_CSV_URL
+REACT_APP_BSC_CSV_URL
+REACT_APP_TRON_CSV_URL

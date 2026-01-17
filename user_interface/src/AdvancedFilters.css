@@ -1,0 +1,764 @@
+.advanced-filters-panel {
+  position: fixed;
+  background: #ffffff;
+  border-radius: 12px;
+  min-width: 350px;
+  max-width: 800px;
+  min-height: 400px;
+  max-height: 90vh;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  resize: both;
+  overflow: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Remove animated border effect */
+.advanced-filters-panel::before {
+  display: none;
+}
+
+.advanced-filters-header {
+  padding: 12px;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: move;
+  user-select: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.header-buttons button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  background: #99617e;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-buttons button:hover {
+  background: rgba(153, 97, 126, 0.8);
+  transform: translateY(-1px);
+}
+
+.header-buttons button:active {
+  transform: translateY(0);
+  background: rgba(153, 97, 126, 0.9);
+}
+
+/* Style for the reset button */
+.header-buttons .reset-button {
+  margin-right: 4px;
+}
+
+.advanced-filters-header h3 {
+  margin: 0;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.header-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.close-button {
+  background: none !important;
+  border: none !important;
+  color: #999999 !important;
+  font-size: 14px !important;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  color: rgba(153, 97, 126, 0.8) !important;
+}
+
+.close-button svg,
+.close-button path,
+.close-button * {
+  fill: #999999 !important;
+  color: #999999 !important;
+  opacity: 1 !important;
+  font-size: 14px !important;
+  display: block !important;
+}
+
+.close-button:hover svg,
+.close-button:hover path,
+.close-button:hover * {
+  fill: rgba(153, 97, 126, 0.8) !important;
+  color: rgba(153, 97, 126, 0.8) !important;
+}
+
+.advanced-filters-content {
+  padding: 8px;
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Simple filter item styling */
+.filter-item {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.filter-item:hover {
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Add styles for active filter items - increasing contrast */
+.filter-item.active {
+  background: #000000;
+  border: 2px solid #000000;
+}
+
+.filter-item.active .filter-header {
+  background: #000000;
+}
+
+.filter-item.active .filter-header-left {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Eye and filter icons in active state */
+.filter-item.active .column-control-button {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.filter-header {
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  min-height: 32px;
+}
+
+.filter-header:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.filter-header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9em;
+  color: #000000;
+}
+
+/* Sort button styles */
+.sort-toggle-button {
+  background: none;
+  border: none;
+  color: #333333;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  margin-left: 6px;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+}
+
+.sort-toggle-button:hover {
+  color: #000000;
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.sort-toggle-button.active {
+  color: var(--highlight-color);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sort-inactive {
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;
+}
+
+.drag-handle {
+  color: #666;
+  cursor: grab;
+  padding: 0 2px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Remove locked drag handle and filter item styling since we hide the handle completely */
+
+.filter-item:hover .drag-handle {
+  opacity: 0.8;
+}
+
+.filter-header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.column-controls {
+  display: flex;
+  gap: 2px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.filter-item:hover .column-controls {
+  opacity: 1;
+}
+
+.column-control-button {
+  background: none;
+  border: none;
+  color: #666;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+}
+
+.column-control-button:hover {
+  color: #000000;
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.column-control-button.active {
+  color: #99617e !important;
+  background: rgba(153, 97, 126, 0.1);
+}
+
+/* Update column controls for active filter items */
+.filter-item.active .column-controls {
+  opacity: 1;
+}
+
+.filter-item.active .column-control-button {
+  color: #ffffff;
+}
+
+.filter-item.active .column-control-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.filter-item.active .column-control-button.active {
+  color: #99617e !important;
+  background: rgba(153, 97, 126, 0.2);
+}
+
+/* Make sure expanded content in active filter items maintains white background */
+.filter-item.active .filter-content {
+  background: #ffffff;
+  color: #000000;
+}
+
+.filter-content {
+  padding: 6px 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  display: none;
+  background: #ffffff;
+}
+
+.filter-content.expanded {
+  display: block;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-inputs {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0;
+}
+
+.filter-inputs input {
+  flex: 1;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #000000;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+  height: 28px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.filter-inputs input:focus {
+  outline: none;
+  border-color: #99617e;
+  box-shadow: 0 0 0 1px #99617e;
+  background: #f8f8f8;
+}
+
+.filter-inputs input::placeholder {
+  color: #666;
+}
+
+/* Hide number input spinners */
+.filter-inputs input[type="number"]::-webkit-inner-spin-button,
+.filter-inputs input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.filter-inputs input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Custom scrollbar */
+.advanced-filters-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.advanced-filters-content::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.advanced-filters-content::-webkit-scrollbar-thumb {
+  background-color: #99617e;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.advanced-filters-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(153, 97, 126, 0.8);
+}
+
+/* Resize handle removed - using native browser resize functionality */
+
+/* React Datepicker close icon (X button) styles - higher specificity */
+.react-datepicker__close-icon::after {
+  background-color: white !important;
+  color: #232323 !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+  box-shadow: none !important;
+  border-radius: 50% !important;
+}
+
+/* Custom DatePicker styles for dark theme */
+.custom-datepicker,
+.custom-datepicker .react-datepicker__header {
+  background: #000000 !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.custom-datepicker .react-datepicker__current-month,
+.custom-datepicker .react-datepicker__day-name,
+.custom-datepicker .react-datepicker__day {
+  color: #fff !important;
+}
+
+.custom-datepicker .react-datepicker__day--selected,
+.custom-datepicker .react-datepicker__day--keyboard-selected {
+  background: var(--highlight-color) !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+.custom-datepicker .react-datepicker__day--in-range,
+.custom-datepicker .react-datepicker__day--in-selecting-range {
+  background: rgba(120, 80, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+.custom-datepicker .react-datepicker__day:hover {
+  background: #444 !important;
+  color: #fff !important;
+}
+
+.custom-datepicker .react-datepicker__triangle {
+  display: none !important;
+}
+
+.custom-datepicker-popper {
+  z-index: 2000 !important;
+}
+
+.custom-datepicker .react-datepicker__close-icon,
+.custom-datepicker .react-datepicker__close-icon::after {
+  background: #fff !important;
+  color: #232323 !important;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+  box-shadow: none;
+}
+
+/* Add styling for date text inputs */
+.date-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #000000;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.date-input::placeholder {
+  color: #666666;
+  font-size: 0.85rem;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #99617e;
+}
+
+/* Add mobile responsiveness for advanced filters */
+@media (max-width: 768px) {
+  .advanced-filters-panel {
+    max-width: 100%;
+    width: 100% !important;
+    height: 90vh !important;
+    left: 0 !important;
+    top: 5vh !important;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+  
+  .advanced-filters-header {
+    padding: 10px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .header-buttons button {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    min-height: 36px;
+  }
+  
+  .sort-toggle-button {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .advanced-filters-header {
+    padding: 8px;
+  }
+  
+  .advanced-filters-header h3 {
+    font-size: 16px;
+  }
+  
+  .filter-inputs {
+    flex-direction: column;
+  }
+  
+  .filter-inputs input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 6px;
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .filter-content input {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  
+  .filter-header-left {
+    font-size: 0.85em;
+  }
+  
+  .column-control-button {
+    padding: 5px;
+  }
+  
+  .drag-handle {
+    /* Always visible on mobile for easier reordering */
+    opacity: 0.8;
+  }
+  
+  /* Make buttons larger and more touchable */
+  .column-control-button,
+  .close-button,
+  .header-buttons button {
+    min-height: 36px;
+    min-width: 36px;
+  }
+  
+  /* More spacing between elements for touch */
+  .filter-item {
+    margin-bottom: 8px;
+  }
+  
+  /* Ensure date picker works well on mobile */
+  .custom-datepicker-popper {
+    width: 280px;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+  }
+  
+  .close-button {
+    background: #000000 !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    width: 40px !important;
+    height: 40px !important;
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Force X to be visible on mobile */
+  .close-button svg,
+  .close-button path {
+    font-size: 24px !important;
+    stroke: #fff !important;
+    stroke-width: 1px !important;
+    display: block !important;
+    color: #fff !important;
+    fill: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Add an X as a fallback if the SVG doesn't show */
+  .close-button:before {
+    content: "✕";
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+  }
+  
+  /* Apply white outline to make it more visible */
+  .close-button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid #ffffff !important;
+    border-radius: 6px;
+    opacity: 1 !important;
+  }
+  
+  /* On mobile, make sure buttons remain well-sized */
+  .header-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .header-buttons button {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px 8px;
+  }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+  .advanced-filters-panel {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    border-radius: 0;
+  }
+  
+  .filter-header {
+    padding: 10px;
+    min-height: 44px;
+  }
+  
+  /* Better touch targets */
+  .column-control-button,
+  .close-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .header-buttons button {
+    height: 44px;
+    font-size: 16px;
+  }
+  
+  .advanced-filters-content {
+    padding: 12px;
+  }
+}
+
+/* Add styles for drag and drop on mobile */
+.filter-item.dragging {
+  opacity: 0.8;
+  background-color: #99617e;
+  border: 2px dashed #fff;
+  position: relative;
+  z-index: 100;
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  touch-action: none;
+}
+
+.filter-item.drag-over {
+  border-top: 3px solid #fff;
+  padding-top: 3px;
+  position: relative;
+}
+
+/* Remove the "Drop Here" text */
+.filter-item.drag-over:before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #fff;
+}
+
+/* Make drag handle much more obvious on mobile */
+@media (max-width: 768px) {
+  .drag-handle {
+    opacity: 1 !important;
+    background-color: #000000 !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 8px 12px !important;
+    margin-right: 8px;
+    position: relative;
+    touch-action: none;
+  }
+  
+  /* Remove the "Drag" text */
+  .drag-handle:after {
+    content: '';
+  }
+  
+  /* Ensure drag handle icon is visible */
+  .drag-handle svg {
+    color: #fff !important;
+    opacity: 1 !important;
+    font-size: 18px !important;
+  }
+  
+  /* Strong highlighting for draggable items */
+  .filter-item.dragging {
+    background-color: #99617e !important;
+    border: 2px solid #fff !important;
+    margin: 5px 0;
+    touch-action: none;
+  }
+  
+  /* Prevent scrolling during drag operation */
+  .advanced-filters-content.dragging {
+    overflow: hidden !important;
+    touch-action: none;
+  }
+  
+  /* Make items look more draggable */
+  .filter-header {
+    position: relative;
+  }
+  
+  /* Highlight the entire panel when dragging on mobile */
+  .advanced-filters-panel.dragging {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    touch-action: none;
+  }
+  
+  .advanced-filters-panel {
+    touch-action: none;
+    -webkit-overflow-scrolling: auto;
+  }
+  
+  /* Ensure proper input sizing on filter content */
+  .filter-content {
+    padding: 6px 8px;
+    box-sizing: border-box;
+  }
+}
+
+/* Remove the now-unused footer styles since we moved the buttons to the header */
+.advanced-filters-footer {
+  display: none;
+} 

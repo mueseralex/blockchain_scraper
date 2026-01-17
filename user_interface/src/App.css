@@ -1,0 +1,2001 @@
+/* Import Open Sans font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* Root styles with Open Sans font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+/* Remove light mode variables and styles */
+:root {
+  /* Dark theme colors - keep only these */
+  --dark-bg: #121212;
+  --dark-surface: #1e1e1e;
+  --dark-border: #333333;
+  --dark-text: #ffffff;
+  --dark-primary: #888888;
+  --dark-accent: #666666;
+  --dark-table-bg: #2a2a2a;
+  --dark-header-bg: #2a2a2a;
+  --dark-scrollbar-thumb: #444444;
+  --dark-scrollbar-track: #1e1e1e;
+  
+  /* Chain-specific highlight colors */
+  --solana-color: #ffffff; /* Current purple */
+  --ethereum-color: #ffffff; /* Light blue */
+  --base-color: #ffffff; /* Base blue */
+  --tron-color: #ffffff; /* Tron red */
+  --bsc-color: #ffffff; /* BSC yellow */
+  
+  /* Default highlight color (will be overridden by chain-specific classes) */
+  --highlight-color: var(--solana-color);
+
+  /* Add variable for perps color */
+  --perps-color: #ffffff;
+  
+  /* Custom color palette variables - separate from chain colors */
+  --custom-highlighter-color: #99617e; /* Updated default highlighting color */
+  --custom-positive-color: #000000; /* Black for positive values */
+  --custom-negative-color: #000000; /* Black for negative values */
+}
+
+/* Chain-specific classes to override the highlight color */
+.chain-solana {
+  --highlight-color: var(--solana-color);
+}
+
+.chain-ethereum {
+  --highlight-color: var(--ethereum-color);
+}
+
+.chain-base {
+  --highlight-color: var(--base-color);
+}
+
+.chain-tron {
+  --highlight-color: var(--tron-color);
+}
+
+.chain-bsc {
+  --highlight-color: var(--bsc-color);
+}
+
+/* Add perps to the chain-specific colors */
+.chain-perps {
+  --highlight-color: var(--perps-color);
+}
+
+/* Base styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  min-height: 100vh;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 60px; /* Account for fixed navbar */
+}
+
+/* Removed duplicate styles - these are in DataSection.css */
+
+/* Remove any conflicting styles */
+.App {
+  display: none; /* Hide the old .App class since we're using .app now */
+}
+
+/* Premium app styles - full screen premium interface */
+.premium-app {
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+  display: flex;
+  position: relative;
+}
+
+/* Override background for dashboard page */
+.premium-app[data-current-page="dashboard"] {
+  background-color: #ffffff;
+}
+
+.premium-app[data-current-page="dashboard"] .main-content {
+  background-color: #ffffff;
+}
+
+/* Ensure dashboard content area is white */
+.premium-app[data-current-page="dashboard"] .main-content,
+.premium-app[data-current-page="dashboard"] .dashboard-container {
+  background-color: #ffffff !important;
+  color: #000000;
+}
+
+/* Remove theme-toggle styles */
+.theme-toggle, .theme-toggle-btn {
+  display: none;
+}
+
+/* Remove all light-mode related styles */
+/* ... keep only dark mode styles ... */
+
+h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-transform: lowercase;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.custom-button {
+  background-color: #121212;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.custom-button:hover {
+  background-color: #1a1a1a;
+}
+
+.zoom-controls {
+  display: none;
+}
+
+.copy-feedback {
+  margin-left: 8px;
+  font-size: 0.9em;
+  color: #cccccc;
+}
+
+.header-cell {
+  position: relative;
+  padding: 8px 12px !important;
+  white-space: nowrap;
+  text-align: center !important;
+  min-width: 100px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.header-text {
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  padding-right: 5px;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+/* Hide the filter circles in column headers */
+.header-filter {
+  display: none;
+}
+
+.filter-toggle {
+  display: none;
+}
+
+/* Hide any related elements */
+.toggle-dot {
+  display: none;
+}
+
+.filter-dropdown {
+  display: none;
+}
+
+.filter-header {
+  display: none;
+}
+
+.filter-inputs {
+  display: none;
+}
+
+.filter-input {
+  display: none;
+}
+
+.clear-filter {
+  display: none;
+}
+
+/* Remove these styles for filter toggle hover/active states */
+.filter-toggle.active {
+  display: none;
+}
+
+.toggle-dot.active {
+  display: none;
+}
+
+.filter-toggle:hover {
+  display: none;
+}
+
+/* Fix scrolling issues while keeping the animated border */
+.table-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  max-width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  z-index: 1;
+  /* Remove overflow: hidden to allow scrolling */
+}
+
+/* Keep the animated border but ensure it doesn't interfere with scrolling */
+.table-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 3px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #99617e 0%, 
+    #99617e 25%,
+    var(--highlight-color) 50%, 
+    #99617e 75%,
+    #99617e 100%
+  );
+  background-size: 300% 100%;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: subtleGlow 12s linear infinite; /* Increased from 8s to 12s for slower movement */
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes subtleGlow {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 300% 0;
+  }
+}
+
+/* Make sure the table container allows scrolling */
+.table-container {
+  border-radius: 6px;
+  overflow: auto;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  width: 100%;
+  max-height: 75vh;
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: transparent;
+  margin: 0 auto;
+  font-size: 0.85em;
+  table-layout: auto;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Center all cell content by default */
+table td, table th {
+  text-align: center !important;
+  padding: 8px 12px;
+  font-family: 'Open Sans', sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000 !important;
+  white-space: nowrap;
+  vertical-align: middle;
+  transition: background-color 0.15s;
+}
+
+/* Column-specific widths for better fitting */
+th:nth-child(1) {
+  min-width: 100px; /* address column */
+}
+
+th[class*="amount"], 
+th[class*="profit"],
+td:nth-child(2), 
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5) {
+  min-width: 100px;
+  width: auto;
+  max-width: 150px;
+}
+
+th:last-child, td:last-child {
+  min-width: 120px; /* date column */
+}
+
+/* Fixed column formatting */
+.fixed-column {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background-color: #ffffff;
+}
+
+/* Override for highlighted fixed columns */
+tr.highlighted-text .fixed-column {
+  background-color: var(--custom-highlighter-color) !important;
+}
+
+/* Headers styling */
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #ffffff;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  font-weight: 600;
+  padding: 12px 10px;
+  text-transform: capitalize;
+  font-size: 0.9em;
+}
+
+/* Make fixed column header stay above other elements */
+thead th.fixed-column {
+  z-index: 11;
+  left: 0;
+  background-color: #ffffff;
+  text-align: left !important;
+  padding-left: 15px;
+}
+
+/* Ensure the first column data stays fixed while scrolling horizontally */
+td.fixed-column {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: #ffffff !important;
+}
+
+/* Override background color for highlighted fixed column cells */
+tr.highlighted-text td.fixed-column {
+  background-color: var(--custom-highlighter-color) !important;
+}
+
+/* Add a subtle shadow to fixed elements for better visual separation */
+thead:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+  pointer-events: none;
+}
+
+/* Remove the problematic shadow from fixed column cells to fix double line issue */
+
+/* Better row styling */
+tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.15s;
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Highlighted row formatting */
+tr.highlighted-text {
+  background-color: var(--custom-highlighter-color) !important;
+}
+
+tr.highlighted-text td {
+  color: #ffffff !important;
+  background-color: var(--custom-highlighter-color) !important;
+}
+
+/* Ensure address links in highlighted rows are also white */
+tr.highlighted-text .address-link {
+  color: #ffffff !important;
+}
+
+/* Ensure all elements within highlighted rows are white */
+tr.highlighted-text * {
+  color: #ffffff !important;
+}
+
+/* Date column right alignment (optional) */
+th:last-child, td:last-child {
+  text-align: center !important;
+}
+
+/* Sort indicators alignment */
+.sort-controls {
+  display: none !important;
+}
+
+/* Scrollbar styling */
+.table-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #99617e;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+}
+
+.table-container::-webkit-scrollbar-corner {
+  background-color: #ffffff;
+  border-radius: 0 0 8px 0;
+}
+
+/* Filter button styling */
+.filter-toggle.active {
+  color: var(--highlight-color) !important;
+}
+
+.toggle-dot.active {
+  color: var(--highlight-color) !important;
+}
+
+.filter-toggle:hover {
+  color: var(--highlight-color);
+}
+
+/* Remove conflicting rules for styling */
+tbody td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000 !important;
+  text-align: center !important;
+}
+
+/* Overall app container to ensure proper spacing */
+.database-container {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  background-color: #ffffff;
+}
+
+/* Chain Selector Dropdown Styles */
+.chain-selector-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.chain-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.chain-dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 160px;
+  justify-content: space-between;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chain-dropdown-button:hover {
+  background-color: #f8f8f8;
+  border-color: #99617e;
+  box-shadow: 0 2px 8px rgba(153, 97, 126, 0.15);
+}
+
+.chain-dropdown-label {
+  flex: 1;
+  text-align: left;
+}
+
+.chain-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.chain-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  color: #000000;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.chain-dropdown-item:hover {
+  background-color: rgba(153, 97, 126, 0.1);
+}
+
+.chain-dropdown-item.active {
+  background-color: rgba(153, 97, 126, 0.15);
+  font-weight: 600;
+}
+
+.chain-dropdown-item .active-indicator {
+  color: #99617e;
+  margin-left: 8px;
+}
+
+/* Controls container with better spacing and alignment */
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 0 15px 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.left-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.pagination-controls button {
+  padding: 4px 10px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pagination-controls button:hover:not([disabled]) {
+  background-color: #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.pagination-controls button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-input-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #000000;
+}
+
+.page-input {
+  width: 40px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+}
+
+.page-input:focus {
+  border-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+/* Highlighter button - keep icons visible */
+.highlighter-button {
+  padding: 8px;
+  background-color: #444444;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 32px; /* Use min-width instead of fixed width */
+  min-height: 32px; /* Use min-height instead of fixed height */
+}
+
+.highlighter-button svg,
+.icon-button svg,
+.icon-button i,
+.highlighter-button i {
+  font-size: 16px;
+  display: block; /* Ensure icons are displayed */
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Icon button - restore icons */
+.icon-button {
+  padding: 6px;
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 32px;
+  min-height: 32px;
+  transition: all 0.15s ease;
+}
+
+.icon-button:hover {
+  background-color: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Restore animations for hyperlink buttons */
+.hyperlink-controls button.active {
+  animation: pulseOutlineShadow 2s infinite;
+}
+
+/* Highlighting */
+.highlighted-text td {
+  color: #ffffff !important;
+  background-color: var(--custom-highlighter-color) !important;
+}
+
+/* Info modal */
+.info-modal {
+  background-color: #1e1e1e;
+  border: 1px solid #333333;
+}
+
+.modal-header {
+  background-color: #444444;
+  color: white;
+}
+
+.modal-content {
+  color: white;
+}
+
+/* Nav bar - hidden to remove white space */
+.nav-bar {
+  display: none;
+}
+
+/* Hide database selector */
+.database-selector {
+  display: none !important;
+}
+
+/* Hide Sidebar Navigation */
+.sidebar-nav {
+  display: none !important;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 15px;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.sidebar-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: invert(49%) sepia(22%) saturate(1065%) hue-rotate(285deg) brightness(85%) contrast(90%);
+}
+
+/* Sidebar footer for discord profile */
+.sidebar-footer {
+  padding: 15px 10px;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Discord profile info replacing logout button */
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.15s;
+  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.sidebar-profile:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Make sidebar profile image more specific to override Contact.css */
+.sidebar-profile .profile-image {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px !important;
+  margin: 0 8px 0 0 !important;
+  flex-shrink: 0;
+  border: none !important;
+  box-sizing: border-box;
+  display: inline-block !important;
+  transition: none !important;
+}
+
+.profile-name {
+  font-size: 14px;
+  color: #000000;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Sidebar scrollbar styling */
+.sidebar-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background-color: #99617e;
+  border-radius: 3px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(153, 97, 126, 0.8);
+}
+
+/* Reset main content for home page */
+.main-content {
+  margin-left: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: white;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Premium app main content - full width without sidebar */
+.premium-app .main-content {
+  margin-left: 0;
+  width: 100%;
+  background-color: var(--dark-bg);
+  padding: 0;
+}
+
+/* Ensure sidebar stays fixed */
+.premium-app .sidebar-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 220px;
+  z-index: 1000;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.premium-app .sidebar-nav.closed {
+  transform: translateX(-100%);
+}
+
+/* Allow sidebar to be closed on desktop */
+.sidebar-nav.closed {
+  transform: translateX(-100%);
+}
+
+.main-content.sidebar-closed {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* Make sure the database container fits properly */
+.database-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Replace the text-based chain icons with image-based ones */
+.chain-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: contain;
+  background-color: transparent;
+}
+
+/* Adjust the chain buttons to properly display the logos */
+.chain-button {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Add responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+  .header-cell {
+    min-width: 90px;
+  }
+  
+  table {
+    font-size: 0.8em;
+  }
+}
+
+/* Ensure address column text is black */
+table td:first-child,
+.fixed-column {
+  color: #000000 !important;
+  text-align: left !important;
+  padding-left: 15px;
+}
+
+/* If addresses are links, ensure they are styled properly */
+table td:first-child a,
+.fixed-column a {
+  color: #000000 !important;
+  text-decoration: none;
+}
+
+table td:first-child a:hover,
+.fixed-column a:hover {
+  color: #99617e !important;
+  text-decoration: underline;
+}
+
+/* Add this to your App.css file */
+.icon-button {
+  padding: 8px;
+  background-color: #444444;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+}
+
+.icon-button:hover {
+  background-color: #555555;
+}
+
+/* Add loading spinner styles */
+.loading-container {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  text-align: center;
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  position: relative;
+}
+
+/* Remove any table cell borders specifically for loading state */
+td.loading-container {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Loading spinner with pink-tan color */
+.logo-spinner {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+.logo-spinner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(54%) sepia(17%) saturate(1147%) hue-rotate(296deg) brightness(92%) contrast(89%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ensure date column text is centered */
+td[data-column="date reviewed [m/d/y]"],
+th[data-column="date reviewed [m/d/y]"] {
+  text-align: center !important;
+}
+
+/* Strengthen the date column centering styles */
+.date-column {
+  text-align: center !important;
+  display: table-cell !important;
+  vertical-align: middle !important;
+}
+
+/* Add specific selector for date column cells */
+td.date-column {
+  text-align: center !important;
+}
+
+/* Target the date column by its content */
+td:has(> span:contains("01-15-2025")) {
+  text-align: center !important;
+}
+
+/* Style for active chain button */
+.sidebar-button.chain-button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Update the glowing line animation to make it 20% longer */
+@keyframes borderGlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 120% 0%; /* Increased from 100% to 120% */
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Make sure the animation duration is appropriate for the longer path */
+.database-container::before {
+  /* Existing properties */
+  animation: borderGlow 6s linear infinite; /* Adjust timing if needed */
+}
+
+.address-link:hover {
+  text-decoration: underline;
+}
+
+/* Ensure address text is black - remove duplicate rule */
+
+/* Improved active button styling with chain-specific colors */
+
+/* Add pulsing glow animation for active buttons */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 8px rgba(153, 97, 126, 0.6); }
+  50% { box-shadow: 0 0 12px rgba(153, 97, 126, 0.8); }
+  100% { box-shadow: 0 0 8px rgba(153, 97, 126, 0.6); }
+}
+
+.hyperlink-controls button.active,
+.icon-button.active,
+.highlighter-button.active,
+.filters-button.active,
+.palette-button.active {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Update filters button styling */
+.filters-button {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #000000;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.filters-button:hover {
+  background: #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.filters-button.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #99617e;
+  box-shadow: 0 0 8px rgba(153, 97, 126, 0.6);
+}
+
+/* Fix for missing refresh icon */
+.icon-button svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Specifically target the sync icon */
+.icon-button svg[data-icon="sync-alt"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ensure the FaSyncAlt icon is visible */
+.icon-button .fa-sync-alt {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fix for both button types to ensure consistent size and icon display */
+.icon-button, .highlighter-button {
+  padding: 8px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  transition: all 0.15s ease;
+}
+
+.icon-button:hover, .highlighter-button:hover {
+  background-color: #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.icon-button.active, .highlighter-button.active {
+  background-color: #ffffff;
+  border-color: #99617e;
+  color: #000000;
+  box-shadow: 0 0 8px rgba(153, 97, 126, 0.6);
+}
+
+/* Copy notification styles */
+.copy-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #99617e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(153, 97, 126, 0.3);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Fix z-index and visibility for icons */
+.icon-button *, .highlighter-button * {
+  z-index: 5;
+  position: relative;
+}
+
+/* Direct fix for the sync icon */
+.left-controls .icon-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Force SVG icon visibility */
+.left-controls .icon-button svg {
+  display: inline-block !important;
+  width: 16px !important;
+  height: 16px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Keep the styling for non-chain buttons */
+.sidebar-button.active:not(.chain-button) {
+  background-color: #1a1a1a; /* Darker background when active */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); /* Subtle border glow */
+  color: white !important;
+}
+
+/* Remove the vertical line indicator */
+.sidebar-nav .sidebar-button.active::after {
+  display: none; /* Remove the vertical line */
+}
+
+/* Remove the dimming effect for chain buttons */
+.sidebar-button.chain-button {
+  /* Remove opacity rule */
+}
+
+/* Remove the conditional styling based on current page */
+body:has([data-current-page="database"]) .sidebar-button.chain-button.active {
+  /* Keep only the original active styling */
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Remove these rules completely */
+body:not(:has([data-current-page="database"])) .sidebar-button.chain-button {
+  /* Remove this rule */
+}
+
+body:not(:has([data-current-page="database"])) .sidebar-button.chain-button.active {
+  /* Remove this rule */
+}
+
+/* Keep the original active chain button styling */
+.sidebar-button.chain-button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filters-button {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #000000;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.filters-button:hover {
+  background: #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Remove duplicate filters-button.active rule - handled above */
+
+/* Add these styles to ensure the filters panel stays on top */
+.advanced-filters-panel {
+  z-index: 1000;
+  position: fixed;
+}
+
+/* Add styles for the draggable handle */
+.advanced-filters-header {
+  cursor: grab;
+}
+
+.advanced-filters-header:active {
+  cursor: grabbing;
+}
+
+/* Style for the filter button icon */
+.filters-button svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Style for the palette button icon */
+.palette-button svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Make sure ALL cells are centered */
+th, td {
+  text-align: center !important;
+}
+
+/* Add styling for the perps chain logo with more zoom */
+.perps .chain-logo {
+  border: 2px solid white;
+  background-color: white;
+  width: 30px; /* Match other buttons */
+  height: 30px; /* Match other buttons */
+  object-fit: cover;
+  object-position: center;
+  padding: 2px;
+  transform: none; /* Remove transform that was enlarging the button */
+  overflow: hidden;
+  box-shadow: 0 0 0 1px white; /* Add white ring */
+  clip-path: circle(45%); /* Slightly larger crop to show the white ring */
+}
+
+/* Add perps to the chain-specific filter for orbiting logo */
+.tool-container.chain-perps .orbiting-logo {
+  filter: drop-shadow(0 0 5px var(--perps-color));
+}
+
+/* Address column styling */
+td:first-child {
+  color: #000000 !important;
+  text-align: left !important;
+  padding-left: 15px;
+}
+
+.address-link {
+  color: #000000 !important;
+  cursor: pointer;
+  transition: color 0.15s;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  letter-spacing: normal;
+}
+
+.address-link:hover {
+  color: #99617e !important;
+  text-decoration: underline;
+}
+
+/* Documentation section styles */
+.welcome-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.welcome-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.welcome-subtitle {
+  font-size: 16px;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+.welcome-content {
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  padding: 25px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.welcome-section {
+  margin-bottom: 25px;
+}
+
+.welcome-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.welcome-section-content {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* Hyperlink controls with better styling */
+.hyperlink-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.hyperlink-controls button {
+  padding: 6px 12px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  color: #000000;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.hyperlink-controls button:hover {
+  background-color: #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.hyperlink-controls button.active {
+  background-color: #ffffff;
+  border-color: #99617e;
+  color: #000000;
+  box-shadow: 0 0 8px rgba(153, 97, 126, 0.6);
+  position: relative;
+}
+
+.hyperlink-controls button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #99617e;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #99617e;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(153, 97, 126, 0.8);
+}
+
+/* Menu item styling */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.menu-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 22px 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #000000;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.menu-item-header:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-item.active > .menu-item-header {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.menu-item-icon {
+  margin-right: 10px;
+  opacity: 0.9;
+  font-size: 13px;
+  width: 15px;
+  text-align: center;
+  margin-left: 4px;
+  color: #99617e;
+}
+
+.menu-item-arrow {
+  font-size: 10px;
+  opacity: 0.7;
+  color: #666;
+}
+
+.menu-item-arrow svg {
+  color: #666 !important;
+  fill: #666 !important;
+}
+
+.menu-item.expanded .menu-item-arrow {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  display: none;
+  margin-left: 0;
+  margin-top: 1px;
+  margin-bottom: 3px;
+  position: relative;
+}
+
+.menu-item.expanded .submenu {
+  display: block;
+}
+
+/* Adjust the spacing and alignment for submenu items */
+.submenu-item {
+  padding: 7px 10px 7px 35px;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 13px;
+  position: relative;
+  text-align: left;
+}
+
+.submenu-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.submenu-item.active {
+  background-color: rgba(0, 0, 0, 0.15);
+  font-weight: 500;
+}
+
+/* Fix submenu divider line */
+.submenu::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.logout-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-profile:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 15px 0 0;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+/* Add palette button styles to match filters button */
+.palette-button {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #000000;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.palette-button:hover {
+  background: #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.palette-button.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #99617e;
+  box-shadow: 0 0 8px rgba(153, 97, 126, 0.6);
+}
+
+/* Color palette panel styles */
+.color-palette-panel {
+  user-select: none;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  z-index: 1000;
+  will-change: transform;
+  backface-visibility: hidden;
+  pointer-events: auto;
+}
+
+.color-palette-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin: -15px -15px 15px -15px;
+  color: #000000;
+  cursor: move;
+  user-select: none;
+}
+
+.color-option {
+  margin-bottom: 20px;
+}
+
+.color-option label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #000000;
+  text-align: center;
+}
+
+.color-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.color-text-input {
+  width: 80px;
+  padding: 6px 8px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.color-preview {
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.color-picker-link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #99617e;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.color-picker-link:hover {
+  color: rgba(153, 97, 126, 0.8);
+}
+
+/* Apply animation to the palette button like other active buttons */
+.palette-button.active {
+  animation: pulseOutlineShadow 2s infinite;
+}
+
+/* Custom-colored profit/loss values */
+.profit-value-positive {
+  color: var(--custom-positive-color) !important;
+}
+
+.profit-value-negative {
+  color: var(--custom-negative-color) !important;
+}
+
+/* Ensure that highlighted rows override profit/loss colors */
+tr.highlighted-text .profit-value-positive,
+tr.highlighted-text .profit-value-negative {
+  color: #ffffff !important;
+}
+
+/* Set default color palette variables */
+:root {
+  /* Other variables remain... */
+  
+  /* Custom color palette variables - with default values */
+  --custom-highlighter-color: #99617e; /* Updated default highlighting color */
+  --custom-positive-color: #000000; /* Black for positive values */
+  --custom-negative-color: #000000; /* Black for negative values */
+}
+
+/* Specific styling for all time profit column */
+[data-column="all time profit"] {
+  font-weight: normal !important;
+}
+
+/* Target specifically for positive/negative values in the all time profit column */
+td[data-column="all time profit"] .profit-value-positive,
+td[data-all-time-profit="true"] .profit-value-positive {
+  color: var(--custom-positive-color) !important;
+  font-weight: normal;
+}
+
+td[data-column="all time profit"] .profit-value-negative,
+td[data-all-time-profit="true"] .profit-value-negative {
+  color: var(--custom-negative-color) !important;
+  font-weight: normal;
+}
+
+/* Ensure that highlighted rows override profit/loss colors */
+tr.highlighted-text .profit-value-positive,
+tr.highlighted-text .profit-value-negative {
+  color: #ffffff !important;
+}
+
+/* Extremely specific styling for all time profit column */
+table td[data-column="all time profit"] .profit-value-positive,
+table td[data-all-time-profit="true"] .profit-value-positive,
+td[data-column="all time profit"] span.profit-value-positive,
+td[data-all-time-profit="true"] span.profit-value-positive {
+  color: var(--custom-positive-color) !important;
+  font-weight: normal !important;
+}
+
+table td[data-column="all time profit"] .profit-value-negative,
+table td[data-all-time-profit="true"] .profit-value-negative,
+td[data-column="all time profit"] span.profit-value-negative,
+td[data-all-time-profit="true"] span.profit-value-negative {
+  color: var(--custom-negative-color) !important;
+  font-weight: normal !important;
+}
+
+/* Override all time profit colors when row is highlighted */
+tr.highlighted-text table td[data-column="all time profit"] .profit-value-positive,
+tr.highlighted-text table td[data-all-time-profit="true"] .profit-value-positive,
+tr.highlighted-text td[data-column="all time profit"] span.profit-value-positive,
+tr.highlighted-text td[data-all-time-profit="true"] span.profit-value-positive,
+tr.highlighted-text td[data-column="all time profit"] .profit-value-positive,
+tr.highlighted-text td[data-all-time-profit="true"] .profit-value-positive {
+  color: #ffffff !important;
+  font-weight: normal !important;
+}
+
+tr.highlighted-text table td[data-column="all time profit"] .profit-value-negative,
+tr.highlighted-text table td[data-all-time-profit="true"] .profit-value-negative,
+tr.highlighted-text td[data-column="all time profit"] span.profit-value-negative,
+tr.highlighted-text td[data-all-time-profit="true"] span.profit-value-negative,
+tr.highlighted-text td[data-column="all time profit"] .profit-value-negative,
+tr.highlighted-text td[data-all-time-profit="true"] .profit-value-negative {
+  color: #ffffff !important;
+  font-weight: normal !important;
+}
+
+/* Ensure profit/loss colors in all time profit cells are always visible */
+.profit-value-positive.all-time-profit,
+.profit-value-negative.all-time-profit {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Extra specific rule to override any other styles */
+body table tbody tr td[data-column="all time profit"] .profit-value-positive,
+body table tbody tr td[data-column="all time profit"] span.profit-value-positive {
+  color: var(--custom-positive-color) !important;
+}
+
+body table tbody tr td[data-column="all time profit"] .profit-value-negative, 
+body table tbody tr td[data-column="all time profit"] span.profit-value-negative {
+  color: var(--custom-negative-color) !important;
+}
+
+/* Add direct color support for all table cells with profit values */
+table td .profit-value-positive,
+table td span.profit-value-positive {
+  color: var(--custom-positive-color) !important;
+}
+
+table td .profit-value-negative,
+table td span.profit-value-negative {
+  color: var(--custom-negative-color) !important;
+}
+
+/* Specific styling for the logout button */
+.menu-item.logout-button {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.menu-item.logout-button .menu-item-header {
+  padding: 8px 15px;
+  color: rgba(0, 0, 0, 0.7);
+  background-color: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  margin: 0 15px;
+  transition: all 0.2s ease;
+}
+
+.menu-item.logout-button .menu-item-header:hover {
+  background-color: #e0e0e0;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu-item.logout-button .menu-item-icon {
+  margin-right: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Hide sidebar toggle button */
+.sidebar-toggle-btn {
+  display: none !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Hide all sidebar elements */
+  .sidebar-nav {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Chain selector on mobile */
+  .chain-selector-container {
+    justify-content: center;
+  }
+  
+  .chain-dropdown-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .chain-dropdown-menu {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .controls-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .left-controls {
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .pagination-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  /* Center the hyperlink controls on mobile */
+  .hyperlink-controls {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  
+  .hyperlink-controls button {
+    min-width: 70px;
+    margin-bottom: 5px;
+  }
+  
+  /* Adjust the advanced filters panel for mobile */
+  .advanced-filters-panel {
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  /* Make table scroll horizontally on mobile */
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure the landing page buttons don't overflow */
+  .buttons-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .custom-button {
+    margin: 5px;
+    white-space: nowrap;
+  }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+  /* Hide all sidebar elements */
+  .sidebar-nav {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Chain selector on very small screens */
+  .chain-dropdown-button,
+  .chain-dropdown-menu {
+    min-width: 140px;
+    max-width: 100%;
+  }
+  
+  /* Hide sidebar overlay */
+  .sidebar-overlay {
+    display: none !important;
+  }
+  
+  /* Adjust AdvancedFilters for very small screens */
+  .advanced-filters-panel {
+    width: 95vw !important;
+    left: 2.5vw !important;
+    right: 2.5vw !important;
+  }
+  
+  /* Make the table header and cells more compact */
+  .header-cell {
+    padding: 5px !important;
+    min-width: 70px !important;
+  }
+  
+  table td, table th {
+    padding: 5px !important;
+  }
+}
+
+/* Styling for installed PWA header */
+@media screen and (display-mode: standalone) {
+  /* Add padding to title in standalone mode */
+  head, title {
+    padding-left: 15px !important;
+    margin-left: 15px !important;
+  }
+  
+  /* Style header element for installed app */
+  header, nav, .app-header, .navbar {
+    padding-left: 10px !important;
+  }
+  
+  /* This targets Safari and Chrome PWA title */
+  head::before {
+    content: ' ';
+    display: block;
+    height: 15px;
+    width: 15px;
+  }
+  
+  /* This helps with iOS PWA title spacing */
+  :root {
+    --pwa-title-spacing: 15px;
+  }
+}
