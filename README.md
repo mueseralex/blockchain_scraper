@@ -1,4 +1,4 @@
-# Blockchain Scraper and User Interface
+# Scraper and User Interface
 
 A comprehensive system for collecting, analyzing, and visualizing blockchain trader performance data across multiple networks. The platform consists of an automated data collection server and a web-based interface for exploring trader statistics.
 
