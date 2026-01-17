@@ -93,15 +93,3 @@ Each trader in the database includes the following metrics:
 | `75k - 250k avg sell 30d` | Monthly average sells per trade |
 | `75k - 250k avg total profit pnl` | Average PNL percentage |
 
-## Technical Stack
-
-**Server**: Python, requests, time management, CSV processing
-**Interface**: React 18, PapaParse, React Icons, React Datepicker
-**Data Format**: CSV with ~25 columns per network
-
-## Getting Started
-
-Refer to the README files in each subdirectory for specific setup and configuration instructions:
-- `server_config/README.md` - Scraper setup and operation
-- `user_interface/README.md` - UI installation and features
-- `sample_data/README.md` - Dataset information
