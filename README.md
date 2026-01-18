@@ -22,18 +22,6 @@ Data is collected from all launchpads within these networks:
 - Base
 - Binance Smart Chain
 
-### Coin Trading Databases
-- Solana
-- Tron
-- Ethereum
-- Base
-- Binance Smart Chain
-- Hyperliquid
-
-### Perpetual Trading Databases
-- Hyperliquid
-- Solana
-
 ## Trader Statistics
 
 Each trader in the database includes the following metrics:
