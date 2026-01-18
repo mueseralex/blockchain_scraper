@@ -1,4 +1,4 @@
-# Blockchain Data Viewer
+# User Interface
 
 A React-based interface for viewing and analyzing blockchain wallet performance data across multiple networks.
 
