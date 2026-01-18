@@ -81,3 +81,15 @@ Each trader in the database includes the following metrics:
 | `75k - 250k avg sell 30d` | Monthly average sells per trade |
 | `75k - 250k avg total profit pnl` | Average PNL percentage |
 
+## UI
+
+### The UI Available (25+ useful statistics per trader)
+
+<img src="https://media.discordapp.net/attachments/1295067928240062494/1462491449974067313/image.png?ex=696e62cd&is=696d114d&hm=73e38799dffb633596f01646f708221c2471cd7be50717e00a7ba01120828d85&=&format=webp&quality=lossless&width=1152&height=648" width="600">
+
+<img src="https://media.discordapp.net/attachments/1295067928240062494/1462491450422988831/image.png?ex=696e62cd&is=696d114d&hm=78b713c2392d53fd1d8d5f664c40de9c103e5a0ab6439bd192418de37a06a1a5&=&format=webp&quality=lossless&width=1152&height=648" width="600">
+
+### Most popular choice online (6 useful statistics per trader)
+
+<img src="https://media.discordapp.net/attachments/1295067928240062494/1462491526616715374/image.png?ex=696e62df&is=696d115f&hm=b0d8adea7080a0bfe8ba49fb68dbf7465c1e7e67a0beeaa1c198cee346fd0c9a&=&format=webp&quality=lossless&width=1284&height=648" width="600">
+
