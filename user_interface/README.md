@@ -6,13 +6,13 @@ A React-based interface for viewing and analyzing blockchain wallet performance 
 
 ### The UI Available (25+ useful statistics per trader)
 
-![Blockchain Analytics UI - Full Statistics View](https://media.discordapp.net/attachments/1295067928240062494/1462491449974067313/image.png?ex=696e62cd&is=696d114d&hm=73e38799dffb633596f01646f708221c2471cd7be50717e00a7ba01120828d85&=&format=webp&quality=lossless&width=1152&height=648)
+<img src="https://media.discordapp.net/attachments/1295067928240062494/1462491449974067313/image.png?ex=696e62cd&is=696d114d&hm=73e38799dffb633596f01646f708221c2471cd7be50717e00a7ba01120828d85&=&format=webp&quality=lossless&width=1152&height=648" width="600">
 
-![Blockchain Analytics UI - Detailed Data Table](https://media.discordapp.net/attachments/1295067928240062494/1462491450422988831/image.png?ex=696e62cd&is=696d114d&hm=78b713c2392d53fd1d8d5f664c40de9c103e5a0ab6439bd192418de37a06a1a5&=&format=webp&quality=lossless&width=1152&height=648)
+<img src="https://media.discordapp.net/attachments/1295067928240062494/1462491450422988831/image.png?ex=696e62cd&is=696d114d&hm=78b713c2392d53fd1d8d5f664c40de9c103e5a0ab6439bd192418de37a06a1a5&=&format=webp&quality=lossless&width=1152&height=648" width="600">
 
 ### Most popular choice online (6 useful statistics per trader)
 
-![Popular Analytics Platform Comparison](https://media.discordapp.net/attachments/1295067928240062494/1462491526616715374/image.png?ex=696e62df&is=696d115f&hm=b0d8adea7080a0bfe8ba49fb68dbf7465c1e7e67a0beeaa1c198cee346fd0c9a&=&format=webp&quality=lossless&width=1284&height=648)
+<img src="https://media.discordapp.net/attachments/1295067928240062494/1462491526616715374/image.png?ex=696e62df&is=696d115f&hm=b0d8adea7080a0bfe8ba49fb68dbf7465c1e7e67a0beeaa1c198cee346fd0c9a&=&format=webp&quality=lossless&width=1284&height=648" width="600">
 
 ## Features
 
@@ -75,19 +75,3 @@ A React-based interface for viewing and analyzing blockchain wallet performance 
 - Cached full dataset for instant filtering
 - Request cancellation on chain switching
 
-## Technical Stack
-
-- React 18 with hooks
-- PapaParse for CSV processing
-- React Icons for UI elements
-- React Datepicker for date selection
-
-## Configuration
-
-Environment variables for CSV data sources:
-- REACT_APP_SOLANA_CSV_URL
-- REACT_APP_ETHEREUM_CSV_URL
-- REACT_APP_BASE_CSV_URL
-- REACT_APP_BSC_CSV_URL
-
-## Setup
