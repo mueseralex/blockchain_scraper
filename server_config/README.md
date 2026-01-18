@@ -1,4 +1,4 @@
-# Multi-Network Blockchain Scraper Server
+# Scraper Server
 
 A 24/7 Python-based scraper that monitors trending tokens across multiple blockchains, extracts top trader wallets, analyzes wallet performance, and exports formatted CSVs with optional GitHub auto-upload.
 
